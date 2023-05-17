@@ -145,8 +145,21 @@ class ViT(nn.Module):
 
         x = self.transformer(x)
 
+        print(x.shape)
+
         x = x.mean(dim=1) if self.pool == 'mean' else x[:, 0]
 
         x = self.to_latent(x)
+        print(x.shape)
         return self.mlp_head(x)
+
+if __name__ == '__main__':
+
+    vit = ViT(image_size=(256, 256), patch_size=(16, 16), num_classes=5, dim=1024, depth=4, heads=3, mlp_dim=2048, pool='cls', channels=3, dim_head=64, dropout=0., emb_dropout=0.)
+
+    # 输入通道数默认是3
+    x = torch.rand(1, 3, 256, 256)
+
+    vit(x)
+
 

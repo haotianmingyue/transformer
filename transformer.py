@@ -8,6 +8,7 @@ import torch.nn as nn
 
 from torch.nn.functional import log_softmax, pad
 
+
 class EncoderDecoder(nn.Module):
     """
     A standard Encoder-Decoder architecture. Base for this and many
